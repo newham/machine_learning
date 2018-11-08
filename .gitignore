@@ -2,3 +2,5 @@ venv/
 env/
 .vscode/
 __pycache__/
+w_input_hidden.txt
+w_hidden_output.txt

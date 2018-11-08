@@ -4,13 +4,13 @@ from matplotlib import pyplot
 import numpy
 import dataset
 
-input_nodes = 3
-hidden_nodes = 3
-output_nodes = 3
-learning_rate = 0.5
-
 
 def test_dataset():
+    input_nodes = 3
+    hidden_nodes = 3
+    output_nodes = 3
+    learning_rate = 0.1
+
     n = nn.NeuralNetwork(input_nodes, hidden_nodes,
                          output_nodes, learning_rate)
     # output = n.query([1, 0.5, -1.5])
@@ -45,7 +45,7 @@ def test_nn():
     input_nodes = 28*28
     hidden_nodes = 100
     output_nodes = 10
-    learning_rate = 0.15
+    learning_rate = 0.2
 
     n = nn.NeuralNetwork(input_nodes, hidden_nodes,
                          output_nodes, learning_rate)
@@ -54,14 +54,23 @@ def test_nn():
         "mnist_dataset/mnist_train_100.csv")
 
     print("start to train")
+    count = 0
     for record in training_data_list:
         inputs = dataset.get_scaled_data(record)
         targets = numpy.zeros(output_nodes)+0.01
         all_values = dataset.get_all_values(record)
         targets[int(all_values[0])] = 0.99
         n.train(inputs, targets)
-        pass
+
+        count += 1
+        if count/len(training_data_list) >= 0.1:
+            print('>', end="")
+            count = 0
+
     print("done")
+    # 将最终的权值矩阵保存
+    numpy.savetxt("w_input_hidden.txt", n.w_input_hidden)
+    numpy.savetxt("w_hidden_output.txt", n.w_hidden_output)
 
     # test_record = training_data_list[11]
     # result = n.query(dataset.get_scaled_data(test_record))
