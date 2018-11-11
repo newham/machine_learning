@@ -1,4 +1,4 @@
-from numpy import random, dot, array, transpose, loadtxt
+from numpy import random, dot, array, transpose, loadtxt, argmax
 from scipy import special
 
 
@@ -67,6 +67,19 @@ class NeuralNetwork:
         inputs = self.list_to_array(inputs_list)
         # 隐含层的输入参数=w_hidden_output × inputs
         hidden_inputs = dot(self.w_input_hidden, inputs)
+        # 计算从隐含层的激活函数值
+        hidden_outputs = self.activation_function(hidden_inputs)
+        # 计算隐含层到输出层的输入
+        final_inputs = dot(self.w_hidden_output, hidden_outputs)
+        # 计算输出层的激活函数
+        final_outputs = self.activation_function(final_inputs)
+        # 根据激活函数得到结果
+        result = argmax(final_outputs)
+        return result
+
+    def query_img(self, img_array):
+        # 隐含层的输入参数=w_hidden_output × inputs
+        hidden_inputs = dot(self.w_input_hidden, img_array)
         # 计算从隐含层的激活函数值
         hidden_outputs = self.activation_function(hidden_inputs)
         # 计算隐含层到输出层的输入
