@@ -52,4 +52,3 @@ def load_img(name):
     rgb_weight = [0.2125, 0.7154, 0.0721, 0]
     img_data_gray = numpy.dot(img_data, rgb_weight)*0.99+0.01
     return img_data_gray.reshape(28*28)
-
