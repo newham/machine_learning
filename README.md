@@ -31,7 +31,7 @@ python3 test_nn.py
 `mnist_dataset/`|100组数据的训练集，10组数据的测试集
 `mnist_dataset/dataset.url`|完整的mnist 数据集的下载地址：[mnist_train.csv](https://pjreddie.com/media/files/mnist_train.csv) ,[mnist_test.csv](https://pjreddie.com/media/files/mnist_test.csv)
 `mnist_dataset/w_hidden_output.txt,w_input_hidden.txt`|导出后的权重矩阵，可直接用来测试
-`img/`|从mnist数据集中导出的图片，有100多张，可以用来测试 <img src="img/1_0.png"> <img src="img/2_1.png"> <img src="img/1_2.png"> <img src="img/10_3.png"> <img src="img/2_4.png"> <img src="img/8_5.png"> <img src="img/13_6.png"> <img src="img/15_7.png"> <img src="img/17_8.png"> <img src="img/19_9.png">. . .
+`img/mnist/`|从mnist数据集中导出的图片，有100多张，可以用来测试 <img src="img/mnist/1_0.png"> <img src="img/mnist/2_1.png"> <img src="img/mnist/1_2.png"> <img src="img/mnist/10_3.png"> <img src="img/mnist/2_4.png"> <img src="img/mnist/8_5.png"> <img src="img/mnist/13_6.png"> <img src="img/mnist/15_7.png"> <img src="img/mnist/17_8.png"> <img src="img/mnist/19_9.png">. . .
 `dataset.py`|操作数据集代码
 `neural_network.py`|神经网络代码
 `query.py`|图像测试代码
