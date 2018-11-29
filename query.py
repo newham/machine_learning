@@ -17,7 +17,7 @@ def query_img():
     n.load("mnist_dataset/w_input_hidden.txt",
            "mnist_dataset/w_hidden_output.txt")
 
-    img_dir = "img/"
+    img_dir = "img/mnist/"
 
     files = os.listdir(img_dir)
     wrong_list = []

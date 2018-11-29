@@ -1,6 +1,6 @@
 venv/
 env/
-.vscode/
+.*/
 __pycache__/
 ./w_input_hidden.txt
 ./w_hidden_output.txt
@@ -8,3 +8,5 @@ scorecard.txt
 mnist_train.csv
 mnist_test.csv
 *.temp
+kdd/*.csv
+./*.csv
