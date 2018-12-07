@@ -35,6 +35,7 @@ python3 test_nn.py
 `dataset.py`|操作数据集代码
 `neural_network.py`|神经网络代码
 `query.py`|图像测试代码
+`requirements.txt`|python依赖库
 `test_nn.py`|训练并测试神经网络代码 > 可运行
 `test_dnn.py`|训练并测试多隐含层神经网络代码 > 可运行
 `test_kdd.py`|BP神经网络在kdd上的应用 > 可运行
