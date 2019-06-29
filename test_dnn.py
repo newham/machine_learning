@@ -5,7 +5,7 @@ from base import print_process
 
 
 def test_query():
-    layers = [28*28, 100, 10]
+    layers = [28 * 28, 100, 10]
     learning_rate = 0.2
 
     dnn = DeepNeuralNetwork(layers, learning_rate)
@@ -20,7 +20,7 @@ def test_query():
 
 
 def test_dnn():
-    layers = [28*28, 50, 10]
+    layers = [28 * 28, 200, 100, 50, 10]
     learning_rate = 0.2
 
     dnn = DeepNeuralNetwork(layers, learning_rate)
@@ -57,14 +57,14 @@ def test_dnn():
         print_process(index, size)
 
     # 打印正确率
-    print("right rate=", right/len(test_data_list)*100, "%")
+    print("right rate=", right / len(test_data_list) * 100, "%")
     pass
 
 
 def recursion(x, i):
     if x < 1000:
         print(i)
-        return recursion(x*2, i+1)
+        return recursion(x * 2, i + 1)
     else:
         print(x)
 

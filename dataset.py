@@ -70,9 +70,11 @@ def get_kdd_CICIDS_data(file_path):
     label_name = data_list[0]
     return label_name, data_list[1:]
 
+
 def get_kdd_UNSW_data(file_path):
     data_list = get_data_list(file_path)
     return data_list[1:]
+
 
 def normalize(data):
     m = numpy.mean(data)
@@ -91,6 +93,15 @@ def normalize(data):
 
        Padding mode - 'edge'
 """
+
+
+def relu(data):
+    in_row, in_col = numpy.shape(data)
+    for i in range(0, in_row):
+        for j in range(0, in_col):
+            if data[i][j] < 0:
+                data[i][j] = 0
+    return data
 
 
 def pooling(inputMap, poolSize=4, poolStride=4, mode='max'):

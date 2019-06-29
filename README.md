@@ -10,6 +10,14 @@ matplotlib|
 numpy     |
 scipy     |
 
+****
+
+**先导入库**
+
+```
+pip install -r requirements.txt
+```
+
 **运行** :
 ```
 python3 test_nn.py

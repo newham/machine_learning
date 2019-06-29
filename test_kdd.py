@@ -169,7 +169,7 @@ def test_kdd_UNSW():
     print("right rate=", right/len(test_data_list)*100, "%")
 
 
-def test_kdd():
+def test_kdd_NSL():
     # 设置初始化参数，采用的是mnist数据集，为28*28的手写数字图像，隐含层100，输出层10代表0~9的数字，学习率初始设为0.2
     layers = [122, 100, 10, 5]
     learning_rate = 0.5
@@ -234,6 +234,70 @@ def test_kdd():
     # 打印正确率
     print("right rate=", right/len(test_data_list)*100, "%")
 
+def test_kdd():
+    # 设置初始化参数，采用的是mnist数据集，为28*28的手写数字图像，隐含层100，输出层10代表0~9的数字，学习率初始设为0.2
+    layers = [39, 20, 10]
+    learning_rate = 0.5
+
+    n = DeepNeuralNetwork(layers, learning_rate)
+    # labels_count = [0, 0, 0, 0, 0]
+    # 第一步：开始训练
+    print("start to train")
+    train = True
+    if train is True:
+        # 训练方法1：用数据训练，采用较小的训练数据集
+        training_data_list = dataset.get_kdd_UNSW_data(
+            "kdd/UNSW_NB15_training-set.csv")
+        training_data_list = random.sample(
+            training_data_list, int(0.1 * len(training_data_list)))
+        # training_data_list = dataset.get_data_list(
+        #     "kdd/KDDTest-21-normalization.txt.csv")
+        size = len(training_data_list)  # 用于打印进度
+        for index, record in enumerate(training_data_list):
+            label, inputs = get_kdd_data_UNSW(record)
+            targets = numpy.zeros(layers[-1]) + 0.01
+            targets[label] = 0.99
+            # targets = numpy.zeros(output_nodes)
+            # targets[label] = 1
+            n.layer_train(inputs, targets)
+            # 打印进度
+            print_process(index, size)
+            # 统计标签数
+            # labels_count[label] += 1
+    else:
+        print("load data done")
+        # 训练方法2：直接导入训练的结果（适用于已经有训练结果，即权值矩阵）
+        n.load("w_input_hidden_kdd.txt",
+               "w_hidden_output_kdd.txt")
+
+    # 第二步：开始测试训练后的神经网络
+    print("start to test")
+    test_data_list = dataset.get_kdd_UNSW_data(
+        "kdd/UNSW_NB15_training-set.csv")
+    test_data_list = random.sample(
+        test_data_list, int(0.1 * len(test_data_list)))
+    # test_data_list = dataset.get_data_list(
+    #     "kdd/KDDTrain+_22Percent-normalization.txt.csv")
+
+    scorecard = []  # 记分牌，保存每个测试数据的测试结果
+    right = 0  # 正确总数
+    count = 0  # 用于打印进度
+    size = len(test_data_list)  # 用于打印进度
+    for index, record in enumerate(test_data_list):
+        label, inputs = get_kdd_data_UNSW(record)
+        result = n.layer_query_result(inputs)
+        # 对比神经网络预测结果和标签
+        if label == result:
+            scorecard.append(1)
+            right += 1
+        else:
+            scorecard.append(0)
+        # 打印进度
+        print_process(index, size)
+    # print(labels_count)
+    # 打印正确率
+    print("right rate=", right / len(test_data_list) * 100, "%")
+
 
 def test_data():
     training_data_list = dataset.get_data_list(
@@ -245,9 +309,9 @@ def test_data():
 
 
 def main():
-    test_kdd_UNSW()
+    # test_kdd_UNSW()
     # test_kdd_CICIDS()
-    # test_kdd()
+    test_kdd()
     # test_data()
 
 
