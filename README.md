@@ -4,24 +4,26 @@
 
 #### code is written in Python3（代码基于: Python3）    
 
+#### I build an example web for Handwritten digital recognition with mnist data set, you can visit this [website](http://212.64.27.116:8081) (我搭建了一个网站，上面有用BP神经网络识别手写数字的例子)
+
 ****
+#### How to use this project 下面介绍如何使用这个项目
 
-**1. use PIP to install required libs (先导入库)**
-
-```
+**1. use PIP to install required libs (先导入库)**  
+```shell
 pip install -r requirements.txt
 ```
 
-**2. run the code (运行)** :
-```
+**2. run the code (运行)**  
+```shell
 python3 test_nn.py
 ```
 
-**3. if you use VSCode as your development tools ， you will meet this error ： (如果你用VSCode作为开发工具，可能会遇到这个错误)**
+**3. if you use VSCode as your development tools ， you will meet this error ： (如果你用VSCode作为开发工具，可能会遇到这个错误)**  
 ```
 [pylint] E1101:Module 'scipy.special' has no 'expit' member
 ```
-you can modify your config file in VSCode (请更改你的设置)：
+**you can modify your config file in VSCode (请更改你的设置)：**  
 ```
 "python.linting.pylintArgs": ["--extension-pkg-whitelist=scipy"]
 ```
