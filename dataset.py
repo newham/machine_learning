@@ -1,6 +1,5 @@
 import numpy
 import matplotlib.pyplot as plt
-import cv2
 
 
 def get_data_list(file_path):
@@ -23,6 +22,11 @@ def get_scaled_data(data):
     scaled_data = numpy.asfarray(all_values[1:])/255*0.99+0.01
     label = int(all_values[0])
     return label, scaled_data
+
+
+def get_scaled_inputs(data):
+    inputs = numpy.asfarray(data[:]) / 255 * 0.99 + 0.01
+    return inputs
 
 
 def get_img_array(data, row, col):
@@ -83,18 +87,6 @@ def normalize(data):
     return [(float(i) - m) / (mx - mn) for i in data]
 
 
-"""INPUTS:
-              inputMap - input array of the pooling layer
-              poolSize - X-size(equivalent to Y-size) of receptive field
-              poolStride - the stride size between successive pooling squares
-
-       OUTPUTS:
-               outputMap - output array of the pooling layer
-
-       Padding mode - 'edge'
-"""
-
-
 def relu(data):
     in_row, in_col = numpy.shape(data)
     for i in range(0, in_row):
@@ -102,53 +94,3 @@ def relu(data):
             if data[i][j] < 0:
                 data[i][j] = 0
     return data
-
-
-def pooling(inputMap, poolSize=4, poolStride=4, mode='max'):
-
-    # inputMap sizes
-    in_row, in_col = numpy.shape(inputMap)
-
-    # outputMap sizes
-    out_row, out_col = int(numpy.floor(in_row/poolStride)
-                           ), int(numpy.floor(in_col/poolStride))
-    row_remainder, col_remainder = numpy.mod(
-        in_row, poolStride), numpy.mod(in_col, poolStride)
-    if row_remainder != 0:
-        out_row += 1
-    if col_remainder != 0:
-        out_col += 1
-    outputMap = numpy.zeros((out_row, out_col))
-
-    # padding
-    temp_map = numpy.lib.pad(
-        inputMap, ((0, poolSize-row_remainder), (0, poolSize-col_remainder)), 'edge')
-
-    # max pooling
-    for r_idx in range(0, out_row):
-        for c_idx in range(0, out_col):
-            startX = c_idx * poolStride
-            startY = r_idx * poolStride
-            poolField = temp_map[startY:startY +
-                                 poolSize, startX:startX + poolSize]
-            poolOut = numpy.max(poolField)
-            outputMap[r_idx, c_idx] = poolOut
-
-    # retrun outputMap
-    return outputMap
-
-
-def convolute(img_data, core):
-    return cv2.filter2D(img_data, -1, core)
-
-
-def test():
-    img_data = read_img("img/0_5.png")
-    print(img_data)
-    print(">>after pooling")
-    img_pooling_data = pooling(img_data, 4, 4)
-    print(img_pooling_data)
-    pass
-
-
-# test()

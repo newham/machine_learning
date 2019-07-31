@@ -1,4 +1,5 @@
 # Machine learning - artificial neural network （机器学习-人工神经网络）
+## 1.Introduction 简介
 ### This project refers to a book "Python neural network programming"[author:Tariq Rashid]. I build a BP artificial neural network with python. In addition, I add some Chinese annotation for the code , and add something new: **support for Deep BP neural network** , read & write dataset , Import and export model , **picture test**, etc.
 ### 用Python实现的人工神经网络源代码（参考书《Python 神经网络编程》[英.Tariq Rashid]）, 对书中的代码做了一些中文注释和优化，增加：支持深度BP、操作数据集、导入导出模型、图片测试等功能  
 
@@ -11,36 +12,30 @@
 <img src="img/bp_site_2.png">
 
 ****
-#### How to use this project 下面介绍如何使用这个项目
+## 2.Getting started 下面介绍如何使用这个项目
 
-**1. use PIP to install required libs (先导入库)**  
+**1）use PIP to install required libs (先导入库)**  
 ```shell
 pip install -r requirements.txt
 ```
 
-**2. run the code (运行)**  
+**2）run the code (运行)**  
 ```shell
 python3 test_nn.py
 ```
 
-**3. if you use VSCode as your development tools ， you will meet this error ： (如果你用VSCode作为开发工具，可能会遇到这个错误)**  
+**3）if you use VSCode as your development tools ， you will meet this error ： (如果你用VSCode作为开发工具，可能会遇到这个错误)**  
 ```
 [pylint] E1101:Module 'scipy.special' has no 'expit' member
 ```
-**you can modify your config file in VSCode (请更改你的设置)：**  
+you can modify your config file in VSCode (请更改你的设置)：  
 ```
 "python.linting.pylintArgs": ["--extension-pkg-whitelist=scipy"]
 ```
 
-**4. if you meet the error about "cv2" , you can commented the code `import cv2` (如果你运行代码出现cv2错误
-请注释掉所有关于`import cv2`的代码)** 
-```
-# import cv2
-```
+## 3.Project Structure 代码目录结构
 
-**code directory structure (代码目录结构)：**  
-
-menu(目录)                                            |introduction(说明)
+item(目录)                                            |introduction(说明)
 ------------------------------------------------------|------------------------------------------------------------
 `kdd/kdd.zip`                                         |kdd cup 99 dataset , unzip to current folder (kdd数据集，直接解压kdd.zip到当前目录即可)
 `mnist_dataset/`                                      |100 taining data, 10 test data (100组数据的训练集，10组数据的测试集)
