@@ -6,6 +6,10 @@
 
 #### I build an example web for Handwritten digital recognition with mnist data set, you can visit this [website](http://212.64.27.116:8081/neural_network/) (我搭建了一个网站，上面有用BP神经网络识别手写数字的例子)
 
+<img src="img/bp_site_1.png">
+
+<img src="img/bp_site_2.png">
+
 ****
 #### How to use this project 下面介绍如何使用这个项目
 
